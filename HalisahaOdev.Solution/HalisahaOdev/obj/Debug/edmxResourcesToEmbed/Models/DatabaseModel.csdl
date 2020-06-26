@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FieldAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Fields">
+    <Key>
+      <PropertyRef Name="FieldsId" />
+    </Key>
+    <Property Name="FieldsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FieldsName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FieldsPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="FieldsCapacity" Type="Int32" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_OdemeIslemleri_FieldsId" FromRole="Fields" ToRole="Payments" />
+    <NavigationProperty Name="Rezervasyon" Relationship="Self.FK_Rezervasyon_FieldsId" FromRole="Fields" ToRole="Rezervasyon" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="OdemeIslemiId" />
+    </Key>
+    <Property Name="OdemeIslemiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FieldsId" Type="Int32" />
+    <Property Name="RezId" Type="Int32" />
+    <Property Name="KullaniciId" Type="Int32" />
+    <NavigationProperty Name="Fields" Relationship="Self.FK_OdemeIslemleri_FieldsId" FromRole="Payments" ToRole="Fields" />
+    <NavigationProperty Name="Rezervasyon" Relationship="Self.FK_OdemeIslemleri_RezId" FromRole="Payments" ToRole="Rezervasyon" />
+  </EntityType>
+  <EntityType Name="Rezervasyon">
+    <Key>
+      <PropertyRef Name="RezID" />
+    </Key>
+    <Property Name="RezID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RezNote" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RezDate" Type="Int32" />
+    <Property Name="FieldsId" Type="Int32" />
+    <NavigationProperty Name="Fields" Relationship="Self.FK_Rezervasyon_FieldsId" FromRole="Rezervasyon" ToRole="Fields" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_OdemeIslemleri_RezId" FromRole="Rezervasyon" ToRole="Payments" />
+  </EntityType>
+  <Association Name="FK_OdemeIslemleri_FieldsId">
+    <End Role="Fields" Type="Self.Fields" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fields">
+        <PropertyRef Name="FieldsId" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="FieldsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervasyon_FieldsId">
+    <End Role="Fields" Type="Self.Fields" Multiplicity="0..1" />
+    <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fields">
+        <PropertyRef Name="FieldsId" />
+      </Principal>
+      <Dependent Role="Rezervasyon">
+        <PropertyRef Name="FieldsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OdemeIslemleri_RezId">
+    <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rezervasyon">
+        <PropertyRef Name="RezID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="RezId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FieldAppDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Fields" EntityType="Self.Fields" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" />
+    <EntitySet Name="Rezervasyon" EntityType="Self.Rezervasyon" />
+    <AssociationSet Name="FK_OdemeIslemleri_FieldsId" Association="Self.FK_OdemeIslemleri_FieldsId">
+      <End Role="Fields" EntitySet="Fields" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervasyon_FieldsId" Association="Self.FK_Rezervasyon_FieldsId">
+      <End Role="Fields" EntitySet="Fields" />
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OdemeIslemleri_RezId" Association="Self.FK_OdemeIslemleri_RezId">
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FieldAppDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Fields">
+    <Key>
+      <PropertyRef Name="FieldsId" />
+    </Key>
+    <Property Name="FieldsId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FieldsName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FieldsPrice" Type="money" />
+    <Property Name="FieldsCapacity" Type="int" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="OdemeIslemiId" />
+    </Key>
+    <Property Name="OdemeIslemiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FieldsId" Type="nvarchar" MaxLength="50" />
+    <Property Name="RezId" Type="int" />
+    <Property Name="KullaniciId" Type="int" />
+  </EntityType>
+  <EntityType Name="Rezervasyon">
+    <Key>
+      <PropertyRef Name="RezID" />
+    </Key>
+    <Property Name="RezID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RezNote" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RezAlDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RezVeDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FieldsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ödendimi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_OdemeIslemleri_FieldsId">
+    <End Role="Fields" Type="Self.Fields" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fields">
+        <PropertyRef Name="FieldsId" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="FieldsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OdemeIslemleri_RezId">
+    <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rezervasyon">
+        <PropertyRef Name="RezID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="RezId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervasyon_FieldsId">
+    <End Role="Fields" Type="Self.Fields" Multiplicity="1" />
+    <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fields">
+        <PropertyRef Name="FieldsId" />
+      </Principal>
+      <Dependent Role="Rezervasyon">
+        <PropertyRef Name="FieldsName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FieldAppDBModel1StoreContainer">
+    <EntitySet Name="Fields" EntityType="Self.Fields" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rezervasyon" EntityType="Self.Rezervasyon" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_OdemeIslemleri_FieldsId" Association="Self.FK_OdemeIslemleri_FieldsId">
+      <End Role="Fields" EntitySet="Fields" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OdemeIslemleri_RezId" Association="Self.FK_OdemeIslemleri_RezId">
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervasyon_FieldsId" Association="Self.FK_Rezervasyon_FieldsId">
+      <End Role="Fields" EntitySet="Fields" />
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

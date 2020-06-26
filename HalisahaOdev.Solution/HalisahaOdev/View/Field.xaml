@@ -1,0 +1,32 @@
+﻿<Page x:Class="HalisahaOdev.View.Field"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HalisahaOdev.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Field">
+
+    <Grid Loaded="Grid_Loaded" Background="#FF53E4D7" Margin="0,0,44,31">
+        <Button  x:Name="btn_add_saha" Content="Ekle" HorizontalAlignment="Left" Margin="561,100,0,0" VerticalAlignment="Top" Width="75" Click="btn_add_saha_Click" Height="20"/>
+        <TextBox  x:Name="txt_sahaName" HorizontalAlignment="Left" Height="21" Margin="140,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"/>
+        <TextBox x:Name="txt_sahaPrice" HorizontalAlignment="Left" Height="21" Margin="277,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"/>
+        <TextBox  x:Name="txt_sahaLimit" HorizontalAlignment="Left" Height="21" Margin="418,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"/>
+        <DataGrid x:Name="tb1" Grid.Column="0" AutoGenerateColumns="False" HorizontalAlignment="Right" Margin="0,142,10,0" VerticalAlignment="Top" Height="227" Width="736" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Saha Adı" Width="*" Binding="{Binding FieldsName}"/>
+                <DataGridTextColumn Header="Saha Fiyati" Width="*" Binding="{Binding FieldsPrice}"/>
+                <DataGridTextColumn Header="Saha Kapasitesi" Width="*" Binding="{Binding FieldsCapacity}"/>
+                <DataGridTextColumn Header="Saha Aktif Mi ?" Width="*" Binding="{Binding isActive}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btn_saha_sil" Content="Sil" HorizontalAlignment="Left" Margin="64,389,0,0" VerticalAlignment="Top" Width="75" Click="btn_saha_sil_Click" Height="20"/>
+        <Button x:Name="btn_saha_pasif" Content="Aktif - Pasif" HorizontalAlignment="Left" Margin="653,389,0,0" VerticalAlignment="Top" Width="75" Click="btn_saha_pasif_Click" Height="20"/>
+        <Label Content="Saha Adı" HorizontalAlignment="Left" Margin="140,79,0,0" VerticalAlignment="Top" Height="23" Width="76"/>
+        <Label Content="Saha Fiyatı" HorizontalAlignment="Left" Margin="277,76,0,0" VerticalAlignment="Top" Height="23" Width="81"/>
+        <Label Content="Saha Kapasitesi" HorizontalAlignment="Left" Margin="418,78,0,0" VerticalAlignment="Top" Height="23" Width="105"/>
+        <Label Content="SAHA YÖNETİMİ" HorizontalAlignment="Left" Margin="19,12,0,0" VerticalAlignment="Top" FontSize="36" Height="58" Width="272"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FieldAppDBModelStoreContainer" CdmEntityContainer="FieldAppDBEntities">
+    <EntitySetMapping Name="Fields">
+      <EntityTypeMapping TypeName="FieldAppDBModel.Fields">
+        <MappingFragment StoreEntitySet="Fields">
+          <ScalarProperty Name="FieldsId" ColumnName="FieldsId" />
+          <ScalarProperty Name="FieldsName" ColumnName="FieldsName" />
+          <ScalarProperty Name="FieldsPrice" ColumnName="FieldsPrice" />
+          <ScalarProperty Name="FieldsCapacity" ColumnName="FieldsCapacity" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="FieldAppDBModel.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="OdemeIslemiId" ColumnName="OdemeIslemiId" />
+          <ScalarProperty Name="FieldsId" ColumnName="FieldsId" />
+          <ScalarProperty Name="RezId" ColumnName="RezId" />
+          <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rezervasyon">
+      <EntityTypeMapping TypeName="FieldAppDBModel.Rezervasyon">
+        <MappingFragment StoreEntitySet="Rezervasyon">
+          <ScalarProperty Name="RezID" ColumnName="RezID" />
+          <ScalarProperty Name="RezNote" ColumnName="RezNote" />
+          <ScalarProperty Name="RezDate" ColumnName="RezDate" />
+          <ScalarProperty Name="FieldsId" ColumnName="FieldsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

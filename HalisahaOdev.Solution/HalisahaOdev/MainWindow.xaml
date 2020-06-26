@@ -1,0 +1,23 @@
+﻿<Window x:Class="HalisahaOdev.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HalisahaOdev"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1000">
+    <Grid>
+        <StackPanel Background="#FF858D8D" MinWidth="100" Margin="0,0,875,0">
+            <Button x:Name="SahaSettings" Content="Saha Ayarları" Height="50" Background="#FF699DF7" Foreground="White" FontWeight="DemiBold" Click="Saha_Click"/>
+            <Button x:Name="RezShow" Content="Rezervasyon Ayarları" Height="50" Background="#FF699DF7" Foreground="White" FontWeight="DemiBold" Click="RezShow_Click"/>
+            <Button x:Name="SiparisShow" Content="Ödemeler" Height="50" Background="#FF699DF7" Foreground="White" FontWeight="DemiBold" Click="SiparisShow_Click"/>
+        </StackPanel>
+        <Grid Margin="117,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame Background="White" Grid.Row="0" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </Grid>
+</Window>
